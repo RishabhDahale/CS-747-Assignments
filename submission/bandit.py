@@ -132,16 +132,17 @@ params = {"instance": args.instance,
 file = open("outputDataT1.txt", "a+")
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
-    file.write(f"{params.instance},{algo},{args.randomSeed},{params.epsilon},{params.horizon},{REG}")
+    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "ucb":
     REG = UCB(params['instance'], params['horizon'])
-    file.write(f"{params.instance},{algo},{args.randomSeed},{params.epsilon},{params.horizon},{REG}")
+    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "kl-ucb":
     REG = klUCB(params['instance'], params['horizon'])
-    file.write(f"{params.instance},{algo},{args.randomSeed},{params.epsilon},{params.horizon},{REG}")
+    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "thompson-sampling":
     REG = tSampling(params['instance'], params['horizon'])
-    file.write(f"{params.instance},{algo},{args.randomSeed},{params.epsilon},{params.horizon},{REG}")
+    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
-    file.write(f"{params.instance},{algo},{args.randomSeed},{params.epsilon},{params.horizon},{REG}")
+    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+file.close()
