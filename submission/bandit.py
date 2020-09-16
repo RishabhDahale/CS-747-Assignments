@@ -32,6 +32,7 @@ class MAB:
         reward = np.random.binomial(1, self.actualProb[arm])
         self.rewards[arm] += reward
         self.playCount[arm] += 1
+        return reward
 
 
 # defining the functions
@@ -55,6 +56,7 @@ def eGreedy(instance, epsilon, horizon):
     REG = (horizon*max(mab.actualProb)) - sum(mab.rewards)
     return REG
 
+
 def UCB(instance, horizon):
     mab = MAB(instance)
     n = mab.actualProb.shape[0]  # number of arms
@@ -69,6 +71,7 @@ def UCB(instance, horizon):
         mab.sampleRewardAndUpdate(playArm)
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
     return REG
+
 
 def klUCB(instance, horizon):
     mab = MAB(instance)
@@ -109,6 +112,7 @@ def klUCB(instance, horizon):
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
     return REG
 
+
 def tSampling(instance, horizon):
     mab = MAB(instance)
     n = mab.actualProb.shape[0]  # number of arms
@@ -119,8 +123,25 @@ def tSampling(instance, horizon):
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
     return REG
 
+
 def tSamplingHint(instance, horizon):
-    return -1
+    mab = MAB(instance)
+    n = mab.actualProb.shape[0]  # number of arms
+    HINT = np.sort(mab.actualProb)
+    armBelief = np.zeros((n, n)) + (1/n)
+    for t in range(horizon):
+        probSampling = []
+        for i in range(n):
+            j = np.random.choice(list(range(n)), p=armBelief[i][:])
+            probSampling.append(HINT[j])
+        playArm = np.argmax(probSampling)
+        reward = mab.sampleRewardAndUpdate(playArm)
+        for i in range(n):
+            p = armBelief[playArm][i]
+            armBelief[playArm][i] = p * ((p**reward)*((1-p)**(1-reward)))
+        armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
+    REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
+    return REG
 
 
 algo = args.algorithm
@@ -129,7 +150,7 @@ params = {"instance": args.instance,
           "epsilon": float(args.epsilon),
           "horizon": int(args.horizon)}
 
-file = open("outputDataT1.txt", "a+")
+file = open("outputDataT2.txt", "a+")
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
     file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
