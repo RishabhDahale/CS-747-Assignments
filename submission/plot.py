@@ -2,12 +2,12 @@ import pandas as pd
 import statistics
 
 
-data = pd.read_csv('../outputDataT2.csv')
+data = pd.read_csv('../outputDataT2-v2.csv')
 regts = []
 regtsh = []
 
 algos = ['thompson-sampling', 'thompson-sampling-with-hint']
-horizons = [100, 400, 1000]
+horizons = [1000, 2000, 5000]
 
 for h in horizons:
     chunk = data.loc[(data['algo']==algos[0]) & (data['horizon']==h)]

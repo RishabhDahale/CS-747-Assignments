@@ -7,7 +7,7 @@ i=1
 
 for in in "${instance[@]}"; do
   for al in "${algorithms[@]}"; do
-    for rs in {0..49}; do
+    for rs in {0..4}; do
       for hz in "${horizon[@]}"; do
         echo "Test $i"
         python bandit.py --instance "$in" --algorithm "$al" --randomSeed "$rs" --epsilon 0.02 --horizon "$hz"

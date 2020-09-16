@@ -1,0 +1,11 @@
+instance,algo,seed,epsilon,horizon,reg
+../instances/i-1.txt,thompson-sampling,0,0.02,1000,16.0
+../instances/i-1.txt,thompson-sampling,1,0.02,1000,26.0
+../instances/i-1.txt,thompson-sampling,2,0.02,1000,28.0
+../instances/i-1.txt,thompson-sampling,3,0.02,1000,-2.0
+../instances/i-1.txt,thompson-sampling,4,0.02,1000,48.0
+../instances/i-1.txt,thompson-sampling-with-hint,0,0.02,1000,297.0
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,1000,296.0
+../instances/i-1.txt,thompson-sampling-with-hint,2,0.02,1000,319.0
+../instances/i-1.txt,thompson-sampling-with-hint,3,0.02,1000,285.0
+../instances/i-1.txt,thompson-sampling-with-hint,4,0.02,1000,263.0
