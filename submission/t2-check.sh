@@ -1,6 +1,6 @@
 instance=('../instances/i-1.txt')
 algorithms=('thompson-sampling' 'thompson-sampling-with-hint')
-horizon=(1000 2000 5000)
+horizon=(100 400 1000)
 randomSeeds=()
 
 i=1

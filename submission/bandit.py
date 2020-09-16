@@ -121,6 +121,7 @@ def tSampling(instance, horizon):
         playArm = np.argmax(betaSampling)
         mab.sampleRewardAndUpdate(playArm)
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
+    # print(REG)
     return REG
 
 
@@ -138,9 +139,11 @@ def tSamplingHint(instance, horizon):
         reward = mab.sampleRewardAndUpdate(playArm)
         for i in range(n):
             p = armBelief[playArm][i]
-            armBelief[playArm][i] = p * ((p**reward)*((1-p)**(1-reward)))
+            q = HINT[i]
+            armBelief[playArm][i] = p * ((q**reward)*((1-q)**(1-reward)))
         armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
+    # print(armBelief, REG)
     return REG
 
 
@@ -150,7 +153,7 @@ params = {"instance": args.instance,
           "epsilon": float(args.epsilon),
           "horizon": int(args.horizon)}
 
-file = open("outputDataT2-v2.txt", "a+")
+file = open("outputDataT2-v3.txt", "a+")
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
     file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
