@@ -1,0 +1,7 @@
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,30,1.0
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,30,1.0
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,30,1.0
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,500,8.0
+../instances/i-2.txt,thompson-sampling-with-hint,1,0.02,500,9.0
+../instances/i-2.txt,thompson-sampling-with-hint,1,0.02,500,9.0
+../instances/i-1.txt,thompson-sampling-with-hint,1,0.02,1000,-1.0

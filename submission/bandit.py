@@ -130,18 +130,31 @@ def tSamplingHint(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     HINT = np.sort(mab.actualProb)
     armBelief = np.zeros((n, n)) + (1/n)
+    # print(armBelief)
     for t in range(horizon):
         probSampling = []
         for i in range(n):
             j = np.random.choice(list(range(n)), p=armBelief[i][:])
-            probSampling.append(HINT[j])
+            probSampling.append(HINT[j]) # beta(mean j)
         playArm = np.argmax(probSampling)
+        playArmProb = probSampling[playArm]
+        # breaking tie
+        commonArms = np.sum(playArmProb==np.array(probSampling))
+        if commonArms!=1:
+            arms = [i for i in range(n) if probSampling[i]==playArmProb]    # indexes whose probSampling is same as max value
+            hintValueIndex = [i for i in range(n) if HINT[i]==playArmProb][0]
+            prob_of_sampling = [armBelief[i][hintValueIndex] for i in arms]
+            playArmIndex = np.argmax(prob_of_sampling)
+            playArm = arms[playArmIndex]
         reward = mab.sampleRewardAndUpdate(playArm)
         for i in range(n):
             p = armBelief[playArm][i]
             q = HINT[i]
             armBelief[playArm][i] = p * ((q**reward)*((1-q)**(1-reward)))
         armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
+        # if t%1==0:
+        #     print(armBelief, reward)
+        # input()
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
     # print(armBelief, REG)
     return REG
@@ -153,7 +166,7 @@ params = {"instance": args.instance,
           "epsilon": float(args.epsilon),
           "horizon": int(args.horizon)}
 
-file = open("outputDataT2.txt", "a+")
+file = open("outputDataT2-v1.txt", "a+")
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
     file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
