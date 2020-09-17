@@ -4,7 +4,7 @@ import numpy as np
 from collections import defaultdict
 
 
-file = '../outputFormatT2-half.txt'
+file = '../outputDataT2.txt'
 # algos = ['epsilon-greedy', 'ucb', 'thompson-sampling']
 algos = ['thompson-sampling', 'thompson-sampling-with-hint']
 d1, d2, d3 = {}, {}, {}
@@ -46,6 +46,7 @@ def plot(instance, regrets):
     plt.ylabel('Regret')
     plt.xscale('log')
     plt.grid(True, which="both")
+    plt.savefig(f'{file.split(".")[-2][-1]}-{instance.split("/")[-1].split(".")[0]}.png')
     plt.show()
 
 

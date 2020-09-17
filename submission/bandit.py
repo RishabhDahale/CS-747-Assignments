@@ -121,7 +121,7 @@ def tSampling(instance, horizon):
         playArm = np.argmax(betaSampling)
         mab.sampleRewardAndUpdate(playArm)
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    # print(REG)
+    print(REG)
     return REG
 
 
@@ -143,8 +143,10 @@ def tSamplingHint(instance, horizon):
         if commonArms!=1:
             arms = [i for i in range(n) if probSampling[i]==playArmProb]    # indexes whose probSampling is same as max value
             hintValueIndex = [i for i in range(n) if HINT[i]==playArmProb][0]
-            prob_of_sampling = [armBelief[i][hintValueIndex] for i in arms]
-            playArmIndex = np.argmax(prob_of_sampling)
+            prob_of_sampling = np.array([armBelief[i][hintValueIndex] for i in arms])
+            prob_of_sampling = prob_of_sampling / np.sum(prob_of_sampling)
+            # playArmIndex = np.argmax(prob_of_sampling)
+            playArmIndex = np.random.choice(arms, p=prob_of_sampling)
             playArm = arms[playArmIndex]
         reward = mab.sampleRewardAndUpdate(playArm)
         for i in range(n):
@@ -152,7 +154,7 @@ def tSamplingHint(instance, horizon):
             q = HINT[i]
             armBelief[playArm][i] = p * ((q**reward)*((1-q)**(1-reward)))
         armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
-        # if t%1==0:
+        # if t%3==0:
         #     print(armBelief, reward)
         # input()
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
