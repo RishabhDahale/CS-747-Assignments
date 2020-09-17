@@ -1,4 +1,4 @@
-instance=('../instances/i-1.txt')
+instance=('../instances/i-1.txt' '../instances/i-2.txt' '../instances/i-3.txt')
 algorithms=('thompson-sampling' 'thompson-sampling-with-hint')
 horizon=(100 400 1600 6400 25600 102400)
 
