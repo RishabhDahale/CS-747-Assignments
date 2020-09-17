@@ -166,7 +166,7 @@ params = {"instance": args.instance,
           "epsilon": float(args.epsilon),
           "horizon": int(args.horizon)}
 
-file = open("outputDataT2-v1.txt", "a+")
+file = open("outputDataT2.txt", "a+")
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
     file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
