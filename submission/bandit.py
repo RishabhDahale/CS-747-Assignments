@@ -86,18 +86,18 @@ def klUCB(instance, horizon):
             return math.log(1/q)
         return (p*math.log(p/q)) + ((1-p)*math.log((1-p)/(1-q)))
 
-    def binarySearchQ(p, t, c=5):
-        tolerance = 1e-6       # constant for this function
+    def binarySearchQ(p, t, c=3):
+        tolerance = 1e-5       # constant for this function
         RHS = math.log(t) + (c*math.log(math.log(t)))
         leftEnd = p; rightEnd = 1
         # leftVal = 0; rightVal = klDiv(p, 1)
         point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
         while (RHS - val)>tolerance:
             if (RHS - val)>0:
-                leftEnd = point
+                leftEnd = point + 0
                 point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
             else:
-                rightEnd = point
+                rightEnd = point + 0
                 point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
         return point
 
@@ -121,7 +121,7 @@ def tSampling(instance, horizon):
         playArm = np.argmax(betaSampling)
         mab.sampleRewardAndUpdate(playArm)
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    print(REG)
+    # print(REG)
     return REG
 
 
@@ -130,7 +130,7 @@ def tSamplingHint(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     HINT = np.sort(mab.actualProb)
     armBelief = np.zeros((n, n)) + (1/n)
-    print(armBelief)
+    # print(armBelief)
     for t in range(horizon):
         probSampling = []
         for i in range(n):
@@ -147,7 +147,7 @@ def tSamplingHint(instance, horizon):
             prob_of_sampling = prob_of_sampling / np.sum(prob_of_sampling)
             # playArmIndex = np.argmax(prob_of_sampling)
             playArmIndex = np.random.choice(arms, p=prob_of_sampling)
-            playArm = arms[playArmIndex]
+            playArm = arms[arms.index(playArmIndex)]
         reward = mab.sampleRewardAndUpdate(playArm)
         for i in range(n):
             p = armBelief[playArm][i]
@@ -158,15 +158,19 @@ def tSamplingHint(instance, horizon):
         #     print(armBelief, reward)
         # input()
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    print(armBelief, REG)
+    # print(armBelief, REG)
     return REG
 
 
-algo = args.algorithm
-np.random.seed(int(args.randomSeed))
-params = {"instance": args.instance,
-          "epsilon": float(args.epsilon),
-          "horizon": int(args.horizon)}
+# algo = args.algorithm
+np.random.seed(int(1))
+# params = {"instance": args.instance,
+#           "epsilon": float(args.epsilon),
+#           "horizon": int(args.horizon)}
+algo = "thompson-sampling-with-hint"
+params = {"instance": '../instances/i-2.txt',
+          "epsilon": 0.02,
+          "horizon": 100}
 
 file = open("outputDataT2.txt", "a+")
 if algo == "epsilon-greedy":

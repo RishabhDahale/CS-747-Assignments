@@ -1826,3 +1826,5 @@
 ../instances/i-1.txt,thompson-sampling-with-hint,5,0.02,4000,1.0
 ../instances/i-1.txt,thompson-sampling-with-hint,6,0.02,4000,30.0
 ../instances/i-1.txt,thompson-sampling-with-hint,7,0.02,4000,7.0
+../instances/i-1.txt,thompson-sampling-with-hint,None,0.02,100,4.0
+../instances/i-2.txt,thompson-sampling-with-hint,None,0.02,100,4.0
