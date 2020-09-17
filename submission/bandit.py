@@ -130,7 +130,7 @@ def tSamplingHint(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     HINT = np.sort(mab.actualProb)
     armBelief = np.zeros((n, n)) + (1/n)
-    # print(armBelief)
+    print(armBelief)
     for t in range(horizon):
         probSampling = []
         for i in range(n):
@@ -156,7 +156,7 @@ def tSamplingHint(instance, horizon):
         #     print(armBelief, reward)
         # input()
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    # print(armBelief, REG)
+    print(armBelief, REG)
     return REG
 
 

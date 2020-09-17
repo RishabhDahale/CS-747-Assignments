@@ -16,4 +16,4 @@ for in in "${instance[@]}"; do
   done
 done
 
-python bandit.py --instance ../instances/i-1.txt --algorithm thompson-sampling-with-hint --randomSeed 1 --epsilon 0.02 --horizon 30
+#python bandit.py --instance ../instances/i-1.txt --algorithm thompson-sampling-with-hint --randomSeed 1 --epsilon 0.02 --horizon 30
