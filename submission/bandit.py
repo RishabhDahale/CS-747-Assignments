@@ -1,8 +1,9 @@
 import argparse
 import math
 import sys
-
+import time
 import numpy as np
+
 
 # parsing the arguments
 parser = argparse.ArgumentParser()
@@ -81,35 +82,50 @@ def klUCB(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     def klDiv(p, q):
         # assuming log as natural log
-        if (q==1) or (q==0):
-            return sys.float_info.max
         if p==0:
-            return math.log(1/(1-q))
+            if q==0:
+                return 0
+            elif q==1:
+                return math.inf
+            else:
+                return math.log(1/(1-q))
         elif p==1:
-            return math.log(1/q)
+            if q==1:
+                return 0
+            elif q!=1:
+                return math.log(1/q)
+        else:
+            if q==0:
+                return math.inf
+            elif q==1:
+                return math.inf
+            else:
+                return (p*math.log(p/q)) + ((1-p)*math.log((1-p)/(1-q)))
         return (p*math.log(p/q)) + ((1-p)*math.log((1-p)/(1-q)))
 
-    def binarySearchQ(p, t, c=3):
-        tolerance = 1e-5       # constant for this function
+    def binarySearchQ(p, t, runs, c=5):
+        if p==1:
+            return 1
+        tolerance = 1e-4       # constant for this function
         RHS = math.log(t) + (c*math.log(math.log(t)))
         leftEnd = p; rightEnd = 1
         # leftVal = 0; rightVal = klDiv(p, 1)
-        point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
-        while (RHS - val)>tolerance:
+        point = (leftEnd + rightEnd)/2; val = klDiv(p, point) * runs
+        while abs(RHS - val)>tolerance:
             if (RHS - val)>0:
                 leftEnd = point + 0
-                point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
+                point = (leftEnd + rightEnd)/2; val = klDiv(p, point) * runs
             else:
                 rightEnd = point + 0
-                point = (leftEnd + rightEnd)/2; val = klDiv(p, point)
+                point = (leftEnd + rightEnd)/2; val = klDiv(p, point) * runs
         return point
 
     # sample each arm once so that mab.playCount is not zero and ln(t) is not -infinity
-    for t in range(n):
-        mab.sampleRewardAndUpdate(t)
-    for t in range(n, horizon):
+    for t in range(max(n, n*math.ceil(3/n))):
+        mab.sampleRewardAndUpdate(t%n)
+    for t in range(max(n, n*math.ceil(3/n)), horizon):
         empMean = [mab.rewards[arm]/mab.playCount[arm] for arm in range(n)]
-        ucb_kl = np.array([binarySearchQ(empMean[arm], t) for arm in range(n)])
+        ucb_kl = np.array([binarySearchQ(empMean[arm], t, mab.playCount[arm]) for arm in range(n)])
         playArm = np.argmax(ucb_kl)
         mab.sampleRewardAndUpdate(playArm)
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
@@ -133,7 +149,7 @@ def tSamplingHint(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     HINT = np.sort(mab.actualProb)
     armBelief = np.zeros((n, n)) + (1/n)
-    print(armBelief)
+#    print(armBelief)
     for t in range(horizon):
         probSampling = []
         for i in range(n):
@@ -160,7 +176,7 @@ def tSamplingHint(instance, horizon):
         # if t%20==0:
         #     print(armBelief, reward, "\n")
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    print(armBelief, REG)
+#    print(armBelief, REG)
     return REG
 
 
@@ -192,6 +208,8 @@ elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
     # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-file = open("outputDataT2.txt", "a+")
+file = open("outputDataT1.txt", "a+")
 file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 file.close()
+#print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+

@@ -1,12 +1,13 @@
 instance=('../instances/i-1.txt' '../instances/i-2.txt' '../instances/i-3.txt')
-algorithms=('epsilon-greedy' 'ucb' 'kl-ucb' 'thompson-sampling')
+#algorithms=('epsilon-greedy' 'ucb' 'thompson-sampling' 'kl-ucb')
+algorithms=('kl-ucb')
 horizon=(100 400 1600 6400 25600 102400)
 randomSeeds=()
 
 i=1
 
-for in in "${instance[@]}"; do
-  for al in "${algorithms[@]}"; do
+for al in "${algorithms[@]}"; do
+  for in in "${instance[@]}"; do
     for rs in {0..49}; do
       for hz in "${horizon[@]}"; do
         echo "Test $i"
@@ -16,3 +17,4 @@ for in in "${instance[@]}"; do
     done
   done
 done
+
