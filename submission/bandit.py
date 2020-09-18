@@ -1,4 +1,7 @@
-import argparse, math, sys
+import argparse
+import math
+import sys
+
 import numpy as np
 
 # parsing the arguments
@@ -171,20 +174,24 @@ params = {"instance": args.instance,
 #           "epsilon": 0.02,
 #           "horizon": 100}
 
-file = open("outputDataT2.txt", "a+")
+# file = open("outputDataT2.txt", "a+")
+REG = None
 if algo == "epsilon-greedy":
     REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
-    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "ucb":
     REG = UCB(params['instance'], params['horizon'])
-    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "kl-ucb":
     REG = klUCB(params['instance'], params['horizon'])
-    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "thompson-sampling":
     REG = tSampling(params['instance'], params['horizon'])
-    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
-    file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+
+file = open("outputDataT2.txt", "a+")
+file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 file.close()
