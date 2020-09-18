@@ -130,7 +130,7 @@ def tSamplingHint(instance, horizon):
     n = mab.actualProb.shape[0]  # number of arms
     HINT = np.sort(mab.actualProb)
     armBelief = np.zeros((n, n)) + (1/n)
-    # print(armBelief)
+    print(armBelief)
     for t in range(horizon):
         probSampling = []
         for i in range(n):
@@ -154,23 +154,22 @@ def tSamplingHint(instance, horizon):
             q = HINT[i]
             armBelief[playArm][i] = p * ((q**reward)*((1-q)**(1-reward)))
         armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
-        # if t%3==0:
-        #     print(armBelief, reward)
-        # input()
+        # if t%20==0:
+        #     print(armBelief, reward, "\n")
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    # print(armBelief, REG)
+    print(armBelief, REG)
     return REG
 
 
-# algo = args.algorithm
-np.random.seed(int(1))
-# params = {"instance": args.instance,
-#           "epsilon": float(args.epsilon),
-#           "horizon": int(args.horizon)}
-algo = "thompson-sampling-with-hint"
-params = {"instance": '../instances/i-2.txt',
-          "epsilon": 0.02,
-          "horizon": 100}
+algo = args.algorithm
+np.random.seed(int(args.randomSeed))
+params = {"instance": args.instance,
+          "epsilon": float(args.epsilon),
+          "horizon": int(args.horizon)}
+# algo = "thompson-sampling-with-hint"
+# params = {"instance": '../instances/i-2.txt',
+#           "epsilon": 0.02,
+#           "horizon": 100}
 
 file = open("outputDataT2.txt", "a+")
 if algo == "epsilon-greedy":
