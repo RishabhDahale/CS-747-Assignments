@@ -1,9 +1,7 @@
 import argparse
 import math
-import sys
-import time
-import numpy as np
 
+import numpy as np
 
 # parsing the arguments
 parser = argparse.ArgumentParser()
@@ -208,8 +206,8 @@ elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
     # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-file = open("outputDataT3.txt", "a+")
-file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
-file.close()
-#print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+# file = open("outputDataT3.txt", "a+")
+# file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+# file.close()
+print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 

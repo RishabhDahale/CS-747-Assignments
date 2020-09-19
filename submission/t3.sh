@@ -1,9 +1,10 @@
-instance=('../instances/i-1.txt' '../instances/i-2.txt' '../instances/i-3.txt')
+#instance=('../instances/i-1.txt' '../instances/i-2.txt' '../instances/i-3.txt')
+instance=('../instances/i-1.txt')
 #algorithms=('epsilon-greedy' 'ucb' 'thompson-sampling' 'kl-ucb')
 algorithms=('epsilon-greedy')
 horizon=(100 400 1600 6400 25600 102400)
 randomSeeds=()
-epsilon=(0.005 0.01 0.015 0.02 0.025 0.03 0.035 0.04 0.045 0.05 0.1 0.15)
+epsilon=(0.002 0.004 0.006 0.008 0.01)
 
 i=1
 
