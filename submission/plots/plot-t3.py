@@ -7,16 +7,18 @@ import numpy as np
 file = '../outputDataT3.txt'
 algos = ['epsilon-greedy']
 # epsilons = [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035, 0.04, 0.045, 0.05, 0.1, 0.15]
-epsilons = [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035]
+# epsilons = [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035]
+# epsilons = [0.002, 0.004, 0.006, 0.008, 0.01]
+epsilons = [0.0005, 0.005, 0.05]
 d1, d2, d3 = {}, {}, {}
 for i in range(len(epsilons)):
     d1[epsilons[i]] = defaultdict(list)
     d2[epsilons[i]] = defaultdict(list)
     d3[epsilons[i]] = defaultdict(list)
 
-regrets = {'../instances/i-1.txt': d1}
-           # '../instances/i-2.txt': d2,
-           # '../instances/i-3.txt': d3}
+regrets = {'../instances/i-1.txt': d1,
+           '../instances/i-2.txt': d2,
+           '../instances/i-3.txt': d3}
 with open(file, 'r') as f:
     for line in f:
         values = line.split(',')
@@ -39,7 +41,7 @@ def plot(instance, regrets):
         var = [regrets[instance][epsilons[i]][k][1] for k in regrets[instance][epsilons[i]].keys()]
         means = np.array(means); var = np.array(var)
         plt.plot(list(regrets[instance][epsilons[i]].keys()),
-                 means, label=f'{instance.split("/")[-1].split(".")[0]} - {epsilons[i]}')
+                 means, label=f'{instance.split("/")[-1].split(".")[0]} - epsilon {epsilons[i]}')
         # plt.fill_between(list(regrets['../instances/i-1.txt'][algos[i]].keys()),
         #                  means + var, means - var, alpha=0.2)
     plt.legend(loc='best')
@@ -51,8 +53,8 @@ def plot(instance, regrets):
     plt.show()
 
 
-plot('../instances/i-1.txt', regrets)
-plot('../instances/i-2.txt', regrets)
+# plot('../instances/i-1.txt', regrets)
+# plot('../instances/i-2.txt', regrets)
 plot('../instances/i-3.txt', regrets)
 
 '''

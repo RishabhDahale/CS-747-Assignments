@@ -50,8 +50,8 @@ def plot(instance, regrets):
     plt.show()
 
 
-plot('../instances/i-1.txt', regrets)
-plot('../instances/i-2.txt', regrets)
+# plot('../instances/i-1.txt', regrets)
+# plot('../instances/i-2.txt', regrets)
 plot('../instances/i-3.txt', regrets)
 
 '''
