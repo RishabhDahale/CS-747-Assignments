@@ -208,7 +208,7 @@ elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
     # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-file = open("outputDataT1.txt", "a+")
+file = open("outputDataT3.txt", "a+")
 file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 file.close()
 #print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
