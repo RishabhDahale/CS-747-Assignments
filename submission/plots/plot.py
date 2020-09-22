@@ -4,9 +4,9 @@ from collections import defaultdict
 import matplotlib.pyplot as plt
 import numpy as np
 
-file = '../outputDataT1.txt'
-algos = ['epsilon-greedy', 'ucb', 'kl-ucb', 'thompson-sampling']
-# algos = ['thompson-sampling', 'thompson-sampling-with-hint']
+file = '../outputDataT2.txt'
+# algos = ['epsilon-greedy', 'ucb', 'kl-ucb', 'thompson-sampling']
+algos = ['thompson-sampling', 'thompson-sampling-with-hint']
 d1, d2, d3 = {}, {}, {}
 for i in range(len(algos)):
     d1[algos[i]] = defaultdict(list)
@@ -24,8 +24,8 @@ with open(file, 'r') as f:
         horizon = int(values[4]); regret = float(values[5][:-1])
         if algo in algos:
             regrets[instance][algo][horizon].append(regret)
-    print(regrets)
-    print(len(regrets['../instances/i-1.txt'][algos[0]][100]))
+    # print(regrets)
+    # print(len(regrets['../instances/i-1.txt'][algos[0]][100]))
     for ins in regrets.keys():
         for algo in algos:
             for h in regrets[ins][algo].keys():
@@ -35,24 +35,25 @@ with open(file, 'r') as f:
 def plot(instance, regrets):
     for i in range(len(algos)):
         means = [regrets[instance][algos[i]][k][0] for k in regrets[instance][algos[i]].keys()]
+        print(means)
         var = [regrets[instance][algos[i]][k][1] for k in regrets[instance][algos[i]].keys()]
         means = np.array(means); var = np.array(var)
         plt.plot(list(regrets[instance][algos[i]].keys()),
                  means, label=f'{instance.split("/")[-1].split(".")[0]} - {algos[i].upper()}')
-        # plt.fill_between(list(regrets['../instances/i-1.txt'][algos[i]].keys()),
-        #                  means + var, means - var, alpha=0.2)
+        plt.fill_between(list(regrets['../instances/i-1.txt'][algos[i]].keys()),
+                         means + var, means - var, alpha=0.2)
     plt.legend(loc='best')
     plt.xlabel('Horizon')
     plt.ylabel('Regret')
     plt.xscale('log')
     plt.grid(True, which="both")
-    plt.savefig(f'{file.split(".")[-2][-1]}-{instance.split("/")[-1].split(".")[0]}.png')
+    # plt.savefig(f'{file.split(".")[-2][-1]}-{instance.split("/")[-1].split(".")[0]}.png')
     plt.show()
 
 
 # plot('../instances/i-1.txt', regrets)
-# plot('../instances/i-2.txt', regrets)
-plot('../instances/i-3.txt', regrets)
+plot('../instances/i-2.txt', regrets)
+# plot('../instances/i-3.txt', regrets)
 
 '''
 for i in range(len(algos)):
