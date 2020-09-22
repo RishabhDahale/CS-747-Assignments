@@ -4,7 +4,7 @@ from collections import defaultdict
 import matplotlib.pyplot as plt
 import numpy as np
 
-file = '../outputDataT2.txt'
+file = '../outputDataT2-v1.txt'
 # algos = ['epsilon-greedy', 'ucb', 'kl-ucb', 'thompson-sampling']
 algos = ['thompson-sampling', 'thompson-sampling-with-hint']
 d1, d2, d3 = {}, {}, {}
@@ -35,24 +35,25 @@ with open(file, 'r') as f:
 def plot(instance, regrets):
     for i in range(len(algos)):
         means = [regrets[instance][algos[i]][k][0] for k in regrets[instance][algos[i]].keys()]
-        print(means)
+        # print(means)
         var = [regrets[instance][algos[i]][k][1] for k in regrets[instance][algos[i]].keys()]
         means = np.array(means); var = np.array(var)
         plt.plot(list(regrets[instance][algos[i]].keys()),
                  means, label=f'{instance.split("/")[-1].split(".")[0]} - {algos[i].upper()}')
-        plt.fill_between(list(regrets['../instances/i-1.txt'][algos[i]].keys()),
-                         means + var, means - var, alpha=0.2)
+        # plt.fill_between(list(regrets['../instances/i-1.txt'][algos[i]].keys()),
+        #                  means + var, means - var, alpha=0.2)
     plt.legend(loc='best')
     plt.xlabel('Horizon')
     plt.ylabel('Regret')
     plt.xscale('log')
     plt.grid(True, which="both")
-    # plt.savefig(f'{file.split(".")[-2][-1]}-{instance.split("/")[-1].split(".")[0]}.png')
+    plt.savefig(f'{file.split(".")[-2][-1]}-{instance.split("/")[-1].split(".")[0]}.png')
+    # plt.savefig(f'2-{instance.split("/")[-1].split(".")[0]}.png')
     plt.show()
 
 
-# plot('../instances/i-1.txt', regrets)
-plot('../instances/i-2.txt', regrets)
+plot('../instances/i-1.txt', regrets)
+# plot('../instances/i-2.txt', regrets)
 # plot('../instances/i-3.txt', regrets)
 
 '''

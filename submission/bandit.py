@@ -173,14 +173,13 @@ def tSamplingHint(instance, horizon):
         if commonArms == 1:
             hintValueIndex = [i for i in range(n) if HINT[i]==playArmProb][0]
         else:
-            arms = [i for i in range(n) if
-                    probSampling[i] == playArmProb]  # indexes whose probSampling is same as max value
             hintValueIndex = [i for i in range(n) if HINT[i]==playArmProb][0]
-            prob_of_sampling = np.array([muBelief[hintValueIndex][i] for i in arms])
-            prob_of_sampling = prob_of_sampling / np.sum(prob_of_sampling)
             # playArmIndex = np.argmax(prob_of_sampling)
-            playArmIndex = np.random.choice(arms, p=prob_of_sampling)
-            playArm = arms[arms.index(playArmIndex)]
+            playArm = np.random.choice(list(range(n)), p=muBelief[hintValueIndex][:])
+            # playArm = arms[arms.index(playArmIndex)]
+
+        # print(armBelief)
+        # print(muBelief)
 
         # arm to play finalized. Now updating the beliefs
         reward = mab.sampleRewardAndUpdate(playArm)
@@ -196,8 +195,8 @@ def tSamplingHint(instance, horizon):
         # if t%20==0:
         #     print(armBelief, reward, "\n")
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    print("armBelief:\n", armBelief)
-    print("muBelief:\n", muBelief)
+    # print("armBelief:\n", armBelief)
+    # print("muBelief:\n", muBelief)
 #    print(armBelief, REG)
     return REG
 
@@ -230,8 +229,8 @@ elif algo == "thompson-sampling-with-hint":
     REG = tSamplingHint(params['instance'], params['horizon'])
     # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-# file = open("outputDataT2-v1.txt", "a+")
-# file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
-# file.close()
-print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+file = open("outputDataT2-v2.txt", "a+")
+file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+file.close()
+# print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 
