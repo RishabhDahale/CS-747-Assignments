@@ -2,7 +2,7 @@ import statistics
 from collections import defaultdict
 
 
-with open("outputDataT2-v1.txt", 'r') as f:
+with open("outputDataT2-v2.txt", 'r') as f:
 	# means = defaultdict(list)
 	means = {"../instances/i-1.txt": defaultdict(list),
 			 "../instances/i-2.txt": defaultdict(list),
