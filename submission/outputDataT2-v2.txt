@@ -1797,4 +1797,5 @@
 ../instances/i-3.txt, thompson-sampling, 649, 0.02, 1600, 160.0
 ../instances/i-3.txt, thompson-sampling, 649, 0.02, 6400, 385.0
 ../instances/i-3.txt, thompson-sampling, 649, 0.02, 25600, 370.0
-../instances/i-3.txt, thompson-sampling, 649, 0.02, 102400, 321.0
+../instances/i-3.txt, thompson-sampling, 649, 0.02, 102400, 321.0../instances/i-1.txt, thompson-sampling-with-hint, 1, 0.02, 30, 9.0
+../instances/i-1.txt, thompson-sampling-with-hint, 1, 0.02, 300, 63.0

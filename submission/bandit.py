@@ -3,15 +3,6 @@ import math
 
 import numpy as np
 
-# parsing the arguments
-parser = argparse.ArgumentParser()
-parser.add_argument("--instance", help="path to the instance file")
-parser.add_argument("--algorithm", choices=["epsilon-greedy", "ucb", "kl-ucb", "thompson-sampling",
-                                            "thompson-sampling-with-hint"], help="Algorithm to run")
-parser.add_argument("--randomSeed", help="Random seed to use. Non negative integer")
-parser.add_argument("--epsilon", help="number in [0, 1]")
-parser.add_argument("--horizon", help="Non-negative integer")
-args = parser.parse_args()
 
 # utility functions/classes
 class MAB:
@@ -201,36 +192,47 @@ def tSamplingHint(instance, horizon):
     return REG
 
 
-algo = args.algorithm
-np.random.seed(int(args.randomSeed))
-params = {"instance": args.instance,
-          "epsilon": float(args.epsilon),
-          "horizon": int(args.horizon)}
-# algo = "thompson-sampling-with-hint"
-# params = {"instance": '../instances/i-2.txt',
-#           "epsilon": 0.02,
-#           "horizon": 100}
+if __name__=="__main__":
+	# parsing the arguments
+	parser = argparse.ArgumentParser()
+	parser.add_argument("--instance", help="path to the instance file")
+	parser.add_argument("--algorithm", choices=["epsilon-greedy", "ucb", "kl-ucb", "thompson-sampling",
+	                                            "thompson-sampling-with-hint"], help="Algorithm to run")
+	parser.add_argument("--randomSeed", help="Random seed to use. Non negative integer")
+	parser.add_argument("--epsilon", help="number in [0, 1]")
+	parser.add_argument("--horizon", help="Non-negative integer")
+	args = parser.parse_args()
+	
+	algo = args.algorithm
+	np.random.seed(int(args.randomSeed))
+	params = {"instance": args.instance,
+	          "epsilon": float(args.epsilon),
+	          "horizon": int(args.horizon)}
+	# algo = "thompson-sampling-with-hint"
+	# params = {"instance": '../instances/i-2.txt',
+	#           "epsilon": 0.02,
+	#           "horizon": 100}
 
-# file = open("outputDataT2.txt", "a+")
-REG = None
-if algo == "epsilon-greedy":
-    REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
-    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
-elif algo == "ucb":
-    REG = UCB(params['instance'], params['horizon'])
-    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
-elif algo == "kl-ucb":
-    REG = klUCB(params['instance'], params['horizon'])
-    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
-elif algo == "thompson-sampling":
-    REG = tSampling(params['instance'], params['horizon'])
-    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
-elif algo == "thompson-sampling-with-hint":
-    REG = tSamplingHint(params['instance'], params['horizon'])
-    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+	# file = open("outputDataT2.txt", "a+")
+	REG = None
+	if algo == "epsilon-greedy":
+	    REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
+	    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+	elif algo == "ucb":
+	    REG = UCB(params['instance'], params['horizon'])
+	    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+	elif algo == "kl-ucb":
+	    REG = klUCB(params['instance'], params['horizon'])
+	    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+	elif algo == "thompson-sampling":
+	    REG = tSampling(params['instance'], params['horizon'])
+	    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
+	elif algo == "thompson-sampling-with-hint":
+	    REG = tSamplingHint(params['instance'], params['horizon'])
+	    # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-file = open("outputDataT2-v2.txt", "a+")
-file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
-file.close()
-# print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+	# file = open("outputDataT2-v2.txt", "a+")
+	# file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+	# file.close()
+	print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
 
