@@ -20,36 +20,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="750d8009-d4c3-4c4a-9315-9cae4e6787b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assignment 2/planner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CS-747-Assignment-1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instances/i-1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/instances/i-2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/instances/i-3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lecture2_17.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/bandit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/check.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/outputDataT1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/outputDataT2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/1-i-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/1-i-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/1-i-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/2-i-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/2-i-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/2-i-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/T3.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/plots/plot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/references.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/report.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/t1.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/t2.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/t3.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission/verifyOutput.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/MazeVerifyOutput.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/PlannerVerifyOutput.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid40.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid50.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid60.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid70.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid80.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/grid90.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution30.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution40.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution50.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution60.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution70.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution80.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/maze/solution90.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/continuing-mdp-10-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/continuing-mdp-2-2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/continuing-mdp-50-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/episodic-mdp-10-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/episodic-mdp-2-2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/episodic-mdp-50-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-continuing-mdp-10-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-continuing-mdp-2-2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-continuing-mdp-50-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-episodic-mdp-10-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-episodic-mdp-2-2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/data/mdp/sol-episodic-mdp-50-20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/generateMDP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/planner.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/simpleMdpC.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/simpleMdpE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/test_logPath.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment 2/visualize.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +86,49 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.planner">
+    <configuration name="decoder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CS-747-Assignments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Assignment 2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Assignment 2/decoder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="encoder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CS-747-Assignments" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Assignment 2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Assignment 2/encoder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="planner" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CS-747-Assignments" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,6 +153,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.planner" />
+        <item itemvalue="Python.decoder" />
+        <item itemvalue="Python.encoder" />
       </list>
     </recent_temporary>
   </component>
@@ -112,6 +167,14 @@
       <option name="presentableId" value="Default" />
       <updated>1602395766728</updated>
     </task>
+    <task id="LOCAL-00001" summary="Task 1 coding complete. Initial testing ok. Make .sh script to check on all instances.">
+      <created>1602484064751</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602484064751</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,47 +189,79 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task 1 coding complete. Initial testing ok. Make .sh script to check on all instances." />
+    <option name="LAST_COMMIT_MESSAGE" value="Task 1 coding complete. Initial testing ok. Make .sh script to check on all instances." />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="373" y="143" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602766381460">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="373" y="143" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1602766381460" />
     <state x="396" y="44" key="#xdebugger.evaluate" timestamp="1602483672645">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="396" y="44" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1602483672645" />
-    <state width="1259" height="171" key="GridCell.Tab.0.bottom" timestamp="1602483948788">
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog" timestamp="1602772380525">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="171" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602483948788" />
-    <state width="1259" height="171" key="GridCell.Tab.0.center" timestamp="1602483948788">
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1602772380525" />
+    <state width="1259" height="523" key="GridCell.Tab.-1.bottom" timestamp="1602748361263">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="171" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602483948788" />
-    <state width="1259" height="171" key="GridCell.Tab.0.left" timestamp="1602483948788">
+    <state width="1259" height="523" key="GridCell.Tab.-1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602748361263" />
+    <state width="1259" height="523" key="GridCell.Tab.-1.center" timestamp="1602748361262">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="171" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602483948788" />
-    <state width="1259" height="171" key="GridCell.Tab.0.right" timestamp="1602483948788">
+    <state width="1259" height="523" key="GridCell.Tab.-1.center/0.0.1280.680@0.0.1280.680" timestamp="1602748361262" />
+    <state width="1259" height="523" key="GridCell.Tab.-1.left" timestamp="1602748361262">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="171" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602483948788" />
-    <state width="1259" height="249" key="GridCell.Tab.1.bottom" timestamp="1602483727726">
+    <state width="1259" height="523" key="GridCell.Tab.-1.left/0.0.1280.680@0.0.1280.680" timestamp="1602748361262" />
+    <state width="1259" height="523" key="GridCell.Tab.-1.right" timestamp="1602748361263">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="249" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602483727726" />
-    <state width="1259" height="249" key="GridCell.Tab.1.center" timestamp="1602483727726">
+    <state width="1259" height="523" key="GridCell.Tab.-1.right/0.0.1280.680@0.0.1280.680" timestamp="1602748361263" />
+    <state width="1259" height="169" key="GridCell.Tab.0.bottom" timestamp="1602772917423">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="249" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602483727726" />
-    <state width="1259" height="249" key="GridCell.Tab.1.left" timestamp="1602483727726">
+    <state width="1259" height="169" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602772917423" />
+    <state width="1259" height="169" key="GridCell.Tab.0.center" timestamp="1602772917423">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="249" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602483727726" />
-    <state width="1259" height="249" key="GridCell.Tab.1.right" timestamp="1602483727726">
+    <state width="1259" height="169" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602772917423" />
+    <state width="1259" height="169" key="GridCell.Tab.0.left" timestamp="1602772917422">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="249" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602483727726" />
+    <state width="1259" height="169" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602772917422" />
+    <state width="1259" height="169" key="GridCell.Tab.0.right" timestamp="1602772917423">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="169" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602772917423" />
+    <state width="1259" height="169" key="GridCell.Tab.1.bottom" timestamp="1602772917424">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="169" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602772917424" />
+    <state width="1259" height="169" key="GridCell.Tab.1.center" timestamp="1602772917424">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="169" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602772917424" />
+    <state width="1259" height="169" key="GridCell.Tab.1.left" timestamp="1602772917423">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="169" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602772917423" />
+    <state width="1259" height="169" key="GridCell.Tab.1.right" timestamp="1602772917424">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="169" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602772917424" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1602397155104">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602397155104" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1602484080638">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602484080638" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1602421249356">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

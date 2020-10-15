@@ -15,6 +15,7 @@ class MDP:
         self.path = mdpPath
         self.S, self.A = None, None
         self.R, self.T = None, None  # It will be a 3d matrix with dimensions as [currState][action][nextState]
+        self.validActions = defaultdict(list)
 
         with open(self.path, 'r') as f:
             for line in f:
@@ -33,13 +34,14 @@ class MDP:
                             values[i] = int(values[i][:-1])
                     self.endStates = deepcopy(values[1:])
                 elif values[0] == 'transition':
-                    cs = int(values[1]);
-                    a = int(values[2]);
+                    cs = int(values[1])
+                    a = int(values[2])
                     ns = int(values[3])
-                    r = float(values[4]);
+                    r = float(values[4])
                     p = float(values[5][:-1])
                     self.R[cs][a][ns] = r
                     self.T[cs][a][ns] = p
+                    self.validActions[cs].append(a)
                 elif values[0] == 'mdptype':
                     self.type = values[1][:-1]
                 elif values[0] == 'discount':
@@ -48,19 +50,19 @@ class MDP:
                 if (self.S is not None) and (self.A is not None) and (self.R is None) and (self.T is None):
                     self.R, self.T = np.zeros((self.S, self.A, self.S)), np.zeros((self.S, self.A, self.S))
 
-        # print(f"MDP, #states={self.S}, #actions={self.A}, gamma={self.gamma}, type={self.type}")
-        # print("\nTransitions rewards:", self.R)
-        # print("\nTransition Probabilities:", self.T)
 
-
-def ValueIteration(mdp: MDP, errorLimit=1e-6):
+def ValueIteration(mdp: MDP, errorLimit=1e-15):
     stateValue = np.zeros((mdp.S, 1))
 
     def iteration(stateValue):
         updatedStateValue = np.zeros_like(stateValue)
-        PI = np.zeros((mdp.S, 1)) - 1
+        PI = np.zeros((mdp.S)) - 1
         for s in range(mdp.S):
             t = np.sum(mdp.T[s] * (mdp.R[s] + (mdp.gamma * np.transpose(stateValue))), axis=1)
+            actionsNotPossible = set(list(range(mdp.A))).difference(mdp.validActions[s])
+            if actionsNotPossible!=set(list(range(mdp.A))):
+                for i in actionsNotPossible:
+                    t[i] = -1
             updatedStateValue[s] = np.max(t)
             PI[s] = np.argmax(t)
         return updatedStateValue, PI
@@ -71,7 +73,7 @@ def ValueIteration(mdp: MDP, errorLimit=1e-6):
         newStateValue, pi = iteration(stateValue)
 
     for i in range(newStateValue.shape[0]):
-        print(f"{newStateValue[i][0]} {pi[i][0]}")
+        print(f"{max(0, newStateValue[i][0])} {pi[i]}")
     return newStateValue, pi
 
 
@@ -89,7 +91,7 @@ def lpSolution(mdp: MDP):
                 [mdp.T[s][a][i] * (mdp.R[s][a][i] + (mdp.gamma * stateValues[i])) for i in range(mdp.S)]) <= \
                       stateValues[s]
 
-    status = lpProb.solve(solver=pulp.PULP_CBC_CMD(msg=False, threads=1))
+    status = lpProb.solve(solver=pulp.PULP_CBC_CMD(msg=False))
     assert pulp.LpStatus[status] == 'Optimal'
     V, pi = np.zeros((mdp.S, 1)), np.zeros((mdp.S, 1))
     for s in range(mdp.S):
@@ -101,9 +103,9 @@ def lpSolution(mdp: MDP):
     return V, pi
 
 
-def hpi(mdp: MDP):
+def hpi(mdp: MDP, errorMargin):
     # At each time step calculate V^{pi}(s)
-    PI = np.random.choice(mdp.S, size=(mdp.S))
+    PI = np.random.choice(mdp.A, size=(mdp.S))
 
     def getVpi(PI):
         # For the given policy pi, to get the value function values, we need to solve the system of linear equations
@@ -136,7 +138,7 @@ def hpi(mdp: MDP):
         IS = []
         for s in range(mdp.S):
             for a in range(mdp.A):
-                if Q[s][a] > V[s]:
+                if Q[s][a] - V[s] > errorMargin:
                     IA[s].append(a)
             if len(IA[s])>=1:
                 IS.append(s)
@@ -154,11 +156,9 @@ def hpi(mdp: MDP):
         IA, IS = getIA(Q, V)
 
     for i in range(mdp.S):
-        print(f"{V[i]} {PI[i]}")
+        print(f"{float(V[i])} {PI[i]}")
+    return V, PI
 
-# mdp = MDP("simpleMdpE.txt")
-# print(f"#States={mdp.S}, #actions={mdp.A}")
-# hpi(mdp)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--mdp", help="Path to input mdp file. Use complete path. No relative path")
@@ -168,10 +168,11 @@ args = parser.parse_args()
 algo = args.algorithm
 
 mdp = MDP(args.mdp)
+# print(f"#States={mdp.S}, #actions={mdp.A}")
 if algo=='vi':
-    ValueIteration(mdp, errorLimit=1e-8)
+    ValueIteration(mdp, errorLimit=min(0.1**(mdp.S**0.5), 1e-8))
 elif algo=='hpi':
-    hpi(mdp)
+    hpi(mdp, errorMargin=0.1 ** (mdp.S**0.25))
 elif algo=='lp':
     lpSolution(mdp)
 
