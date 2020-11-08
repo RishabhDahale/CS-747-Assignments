@@ -5,8 +5,7 @@ import glob
 import csv
 
 
-# algos = ["sarsa", "expsarsa", "qlearning"]
-algos = ["sarsa"]
+algos = ["sarsa", "expsarsa", "qlearning"]
 
 if not os.path.exists("./plots"):
     os.makedirs("./plots")
