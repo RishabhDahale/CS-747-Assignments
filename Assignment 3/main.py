@@ -5,8 +5,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", default=1, help='random seed of the experiments')
-parser.add_argument("--moves", default=4,
-                    help="Maximum number of moves possible from a position. For normal windy gridworld this should be 4, for kings will be 8 or 9")
+parser.add_argument("--moves", default=4, help="Maximum number of moves possible from a position. For normal windy gridworld this should be 4, for kings will be 8 or 9")
 parser.add_argument("--windDev", default=0, help="Deviation of the wind. Should be integer")
 parser.add_argument("--maxTimeSteps", default=8000, help="Maximum Time Steps to allow the run")
 parser.add_argument("--epsilon", default=0.1, help="Probability with which exploration should happen")
@@ -86,7 +85,10 @@ def QLearning(Q: np.array, gamma, reward):
     return target
 
 
-def Sarsa(Q: np.array, gamma, action, reward):
+def Sarsa(Q: np.array, gamma, reward, PI, nextI, nextJ):
+    p = np.zeros(int(args.moves)) + (float(args.epsilon) / int(args.moves))
+    p[PI[nextI, nextJ]] = p[PI[nextI, nextJ]] + 1 - float(args.epsilon)
+    action = np.random.choice(list(range(int(args.moves))), p=p)
     target = reward + (gamma * Q[action])
     return target
 
@@ -110,7 +112,7 @@ def Learning(grid: Grid, maxTimeSteps: int, algo: str):
         if algo == "qlearning":
             target = QLearning(Q[iNext, jNext], gamma=GAMMA, reward=reward)
         elif algo == "sarsa":
-            target = Sarsa(Q[iNext, jNext], gamma=GAMMA, action=action, reward=reward)
+            target = Sarsa(Q[iNext, jNext], gamma=GAMMA, reward=reward, PI=PI)
         elif algo == "expsarsa":
             target = ExpSarsa(Q[iNext, jNext], gamma=GAMMA, reward=reward, p=p)
         Q[iCurr, jCurr, action] = Q[iCurr, jCurr, action] + LR * (target - Q[iCurr, jCurr, action])
