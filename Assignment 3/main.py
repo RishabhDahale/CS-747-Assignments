@@ -45,6 +45,7 @@ class Grid:
     def move(self, direction: str):
         nextState = None
         possibleI = np.array(range(-1 * self.windDev, self.windDev + 1)) + self.wind[self.myPosJ]
+        print(possibleI)
         if direction.upper() == "N":
             possibleIN = possibleI + self.myPosI - 1
             nextState = (max(0, min(self.rows - 1, np.random.choice(possibleIN))), self.myPosJ)
@@ -112,7 +113,7 @@ def Learning(grid: Grid, maxTimeSteps: int, algo: str):
         if algo == "qlearning":
             target = QLearning(Q[iNext, jNext], gamma=GAMMA, reward=reward)
         elif algo == "sarsa":
-            target = Sarsa(Q[iNext, jNext], gamma=GAMMA, reward=reward, PI=PI)
+            target = Sarsa(Q[iNext, jNext], gamma=GAMMA, reward=reward, PI=PI, nextI=iNext, nextJ=jNext)
         elif algo == "expsarsa":
             target = ExpSarsa(Q[iNext, jNext], gamma=GAMMA, reward=reward, p=p)
         Q[iCurr, jCurr, action] = Q[iCurr, jCurr, action] + LR * (target - Q[iCurr, jCurr, action])
