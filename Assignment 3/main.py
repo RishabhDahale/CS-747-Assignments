@@ -10,10 +10,9 @@ parser.add_argument("--windDev", default=0, help="Deviation of the wind. Should 
 parser.add_argument("--maxTimeSteps", default=8000, help="Maximum Time Steps to allow the run")
 parser.add_argument("--epsilon", default=0.1, help="Probability with which exploration should happen")
 parser.add_argument("--alpha", default=0.5, help="Learning rate")
-parser.add_argument("--algo", default="sarsa", choices=["sarsa", "expsarsa", "qlearning"],
-                    help="Algorithm to be used for learning")
+parser.add_argument("--algo", default="sarsa", choices=["sarsa", "expsarsa", "qlearning"], help="Algorithm to be used for learning")
 parser.add_argument("--gamma", default=1, help="Discount factor to be used")
-parser.add_argument("--endReward", default=10, help="Reward for the end state")
+parser.add_argument("--endReward", default=1, help="Reward for the end state")
 args = parser.parse_args()
 
 ROWS = 7
