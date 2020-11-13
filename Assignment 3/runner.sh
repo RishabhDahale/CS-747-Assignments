@@ -2,8 +2,8 @@ moves=4
 algo=('sarsa' 'expsarsa' 'qlearning')
 # Simple windy-gridworld
 i=1
-for seed in {1..20}; do
-  for al in "${algo[@]}"; do
+for al in "${algo[@]}"; do
+  for seed in {1..20}; do
     echo "Simple Gridworld $i"
     python3 main.py --seed "$seed" --algo "$al" --moves "$moves"
     i=$((i + 1))
@@ -11,6 +11,7 @@ for seed in {1..20}; do
 done
 
 # Kings move
+algo=('sarsa')
 moves=8
 i=1
 for seed in {1..20}; do
@@ -44,5 +45,5 @@ for seed in {1..20}; do
 done
 
 echo "Making Plots"
-python plot.py
+python3 plot.py
 

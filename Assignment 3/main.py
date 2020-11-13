@@ -43,8 +43,10 @@ class Grid:
 
     def move(self, direction: str):
         nextState = None
-        possibleI = np.array(range(-1 * self.windDev, self.windDev + 1)) + self.wind[self.myPosJ]
-        print(possibleI)
+        if self.wind[self.myPosJ]:
+            possibleI = np.array(range(-1 * self.windDev, self.windDev + 1)) + self.wind[self.myPosJ]
+        else:
+            possibleI = np.array([self.wind[self.myPosJ]])
         if direction.upper() == "N":
             possibleIN = possibleI + self.myPosI - 1
             nextState = (max(0, min(self.rows - 1, np.random.choice(possibleIN))), self.myPosJ)
