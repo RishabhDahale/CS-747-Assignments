@@ -3,7 +3,7 @@ To get the results of the experiments for 20 random seeds run "runner.sh" script
 main.py
 	main.py is the one and only script needed to run all the experiments. It takes some parameters from the command line
 	--seed SEED           			random seed of the experiments
-	--moves MOVES         			Maximum number of moves possible from a position. For
+	--moves MOVES {4, 8, 9}			Maximum number of moves possible from a position. For
 	                      			normal windy gridworld this should be 4, for kings
 	                      			will be 8 or 9  (default value 4)
 	--windDev WINDDEV     			Deviation of the wind. Should be integer. For stochastic
@@ -16,4 +16,5 @@ main.py
 	--endReward ENDREWARD 			Reward for the end state	(default 1)
 
 plot.py
+	Does not require any command line input.
 	Reads data from the "results" folder, generated appropriate plots and stores them in the folder "plots"

@@ -169,12 +169,9 @@ args = parser.parse_args()
 algo = args.algorithm
 
 mdp = MDP(args.mdp)
-# print(f"#States={mdp.S}, #actions={mdp.A}")
 if algo=='vi':
     ValueIteration(mdp, errorLimit=min(0.1**(mdp.S**0.5), 1e-8))
 elif algo=='hpi':
     hpi(mdp, errorMargin=1e-15)
 elif algo=='lp':
     lpSolution(mdp, errorMargin=min(1e-10, 0.1 ** (mdp.S**0.4)))
-
-

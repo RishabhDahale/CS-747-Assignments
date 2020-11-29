@@ -28,8 +28,6 @@ class MAB:
         return reward
 
 
-# defining the functions
-# every function should return the REG i.e. regret of that run
 def eGreedy(instance, epsilon, horizon):
     mab = MAB(instance)
     n = mab.actualProb.shape[0]  # number of arms
@@ -153,17 +151,6 @@ def tSamplingHint(instance, horizon):
             probSampling.append(HINT[j])  # beta(mean j)
         playArm = np.argmax(probSampling)
         playArmProb = probSampling[playArm]
-        # breaking tie
-        # commonArms = np.sum(playArmProb==np.array(probSampling))
-        # if commonArms!=1:
-        #     arms = [i for i in range(n) if probSampling[i]==playArmProb]    # indexes whose probSampling is same as max value
-        #     hintValueIndex = [i for i in range(n) if HINT[i]==playArmProb][0]
-        #     prob_of_sampling = np.array([armBelief[i][hintValueIndex] for i in arms])
-        #     prob_of_sampling = prob_of_sampling / np.sum(prob_of_sampling)
-        #     # playArmIndex = np.argmax(prob_of_sampling)
-        #     playArmIndex = np.random.choice(arms, p=prob_of_sampling)
-        #     playArm = arms[arms.index(playArmIndex)]
-
         # breaking ties with another tSampling
         commonArms = np.sum(playArmProb == np.array(probSampling))
         hintValueIndex = -1
@@ -171,13 +158,8 @@ def tSamplingHint(instance, horizon):
             hintValueIndex = [i for i in range(n) if HINT[i] == playArmProb][0]
         else:
             hintValueIndex = [i for i in range(n) if HINT[i] == playArmProb][0]
-            # playArmIndex = np.argmax(prob_of_sampling)
             playArm = np.random.choice(list(range(n)), p=muBelief[hintValueIndex][:])
-            # playArm = arms[arms.index(playArmIndex)]
-
-        # print(armBelief)
-        # print(muBelief)
-
+        
         # arm to play finalized. Now updating the beliefs
         reward = mab.sampleRewardAndUpdate(playArm)
         for i in range(n):
@@ -186,15 +168,9 @@ def tSamplingHint(instance, horizon):
             p1 = muBelief[hintValueIndex][i]
             muBelief[hintValueIndex][i] = armBelief[i][hintValueIndex] * p1
             armBelief[playArm][i] = p * ((q ** reward) * ((1 - q) ** (1 - reward)))
-            # muBelief[hintValueIndex][i] = p1 * ((q**reward)*((1-q)**(1-reward)))
         armBelief[playArm][:] = armBelief[playArm][:] / np.sum(armBelief[playArm][:])
         muBelief[hintValueIndex][:] = muBelief[hintValueIndex][:] / np.sum(muBelief[hintValueIndex][:])
-        # if t%20==0:
-        #     print(armBelief, reward, "\n")
     REG = (horizon * max(mab.actualProb)) - sum(mab.rewards)
-    # print("armBelief:\n", armBelief)
-    # print("muBelief:\n", muBelief)
-    #    print(armBelief, REG)
     return REG
 
 
@@ -214,12 +190,6 @@ if __name__ == "__main__":
     params = {"instance": args.instance,
               "epsilon": float(args.epsilon),
               "horizon": int(args.horizon)}
-    # algo = "thompson-sampling-with-hint"
-    # params = {"instance": '../instances/i-2.txt',
-    #           "epsilon": 0.02,
-    #           "horizon": 100}
-
-    # file = open("outputDataT2.txt", "a+")
     REG = None
     if algo == "epsilon-greedy":
         REG = eGreedy(params['instance'], params['epsilon'], params['horizon'])
@@ -237,7 +207,7 @@ if __name__ == "__main__":
         REG = tSamplingHint(params['instance'], params['horizon'])
         # file.write(f"{params['instance']},{algo},{args.randomSeed},{params['epsilon']},{params['horizon']},{REG}\n")
 
-    # file = open("outputDataT2-v2.txt", "a+")
-    # file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
-    # file.close()
+    file = open("outputDataT2-v2.txt", "a+")
+    file.write(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")
+    file.close()
     print(f"{params['instance']}, {algo}, {args.randomSeed}, {params['epsilon']}, {params['horizon']}, {REG}\n")

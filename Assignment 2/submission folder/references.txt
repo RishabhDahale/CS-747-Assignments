@@ -1,2 +1,0 @@
-1. Geeks for geeks PuLP example: https://www.geeksforgeeks.org/python-linear-programming-in-pulp/
-2. Lecture slides

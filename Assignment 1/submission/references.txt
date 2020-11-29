@@ -1,7 +1,0 @@
-1. Numpy documentation for random functions https://numpy.org/doc/stable/
-2. Matplotlib Documentation for plot generation help https://matplotlib.org/3.2.1/contents.html
-3. https://en.wikipedia.org/wiki/Thompson_sampling
-4. https://en.wikipedia.org/wiki/Beta_distribution
-5. https://en.wikipedia.org/wiki/Beta-binomial_distribution
-6. Bandit Algorithms by Tor Lattimore and Csaba Szepesvari, Draft of Wednesday 16th January, 2019 Revision: 1694
-7. https://www.ida.liu.se/~732A66/info/lecture2_17.pdf

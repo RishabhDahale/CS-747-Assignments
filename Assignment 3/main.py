@@ -5,7 +5,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", default=1, help='random seed of the experiments')
-parser.add_argument("--moves", default=4, help="Maximum number of moves possible from a position. For normal windy gridworld this should be 4, for kings will be 8 or 9")
+parser.add_argument("--moves", default=4, choices=[4, 8, 9] help="Maximum number of moves possible from a position. For normal windy gridworld this should be 4, for kings will be 8 or 9")
 parser.add_argument("--windDev", default=0, help="Deviation of the wind. Should be integer")
 parser.add_argument("--maxTimeSteps", default=8000, help="Maximum Time Steps to allow the run")
 parser.add_argument("--epsilon", default=0.1, help="Probability with which exploration should happen")
